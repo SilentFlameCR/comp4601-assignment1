@@ -18,7 +18,14 @@ class WebCrawler {
     console.log(`Seed URL: ${this.seedUrl}`);
     console.log(`Max pages: ${this.maxPages}\n`);
 
-    this.queue.push(this.seedUrl);
+    if (this.dataset === 'fruitsA') {
+      for (let i = 0; i < 100; i++) {
+        const url = `https://people.scs.carleton.ca/~avamckenney/fruitsA/N-${i}.html`;
+        this.queue.push(url);
+      }
+    } else {
+      this.queue.push(this.seedUrl);
+    }
 
     while (this.queue.length > 0 && this.pageCount < this.maxPages) {
       const url = this.queue.shift();
@@ -36,6 +43,7 @@ class WebCrawler {
 
   async crawlPage(url) {
     try {
+      url = this.normalizeUrl(url);
       this.visitedUrls.add(url);
       this.pageCount++;
 
@@ -66,7 +74,8 @@ class WebCrawler {
         const href = $(elem).attr('href');
         if (href) {
           try {
-            const absoluteUrl = new URL(href, url).href;
+            let absoluteUrl = new URL(href, url).href;
+            absoluteUrl = this.normalizeUrl(absoluteUrl);
             links.push(absoluteUrl);
 
             if (!this.visitedUrls.has(absoluteUrl) && !this.queue.includes(absoluteUrl)) {
@@ -92,6 +101,20 @@ class WebCrawler {
       } else {
         console.error(`  Error crawling ${url}:`, error.message);
       }
+    }
+  }
+
+  normalizeUrl(url) {
+    try {
+      const urlObj = new URL(url);
+      urlObj.hash = '';
+      let normalized = urlObj.href;
+      if (normalized.endsWith('/')) {
+        normalized = normalized.slice(0, -1);
+      }
+      return normalized;
+    } catch (e) {
+      return url;
     }
   }
 
