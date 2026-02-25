@@ -1,0 +1,33 @@
+Functional Requirements (70 total):
+The implementation must be running on OpenStack and the TA must be able to connect to your server and issue search queries.
+
+(Half the marks for each section below are allocated to each of the datasets - fruitsA and personal)
+1) Search performs correctly and supports the required query parameters (20)
+  a) q - specifies the query
+  b) boost - boost results using PageRank
+  c) limit - specifies number of results to return
+2) Browser-based interface for searching and viewing results (5)
+3) Search results includes required information (5)
+  a) The URL of original page
+  b) The title of original page
+  c) PageRank of page within crawled network
+  d) Link to view data for this page
+  e) The computed search score for the page
+4) Viewing a page's data includes required information (5)
+  a) URL
+  b) Title
+  c) List of incoming links
+  d) List of ongoing links
+  e) Word frequency data
+5) Search service properly integrates with distributed search service (15)
+
+Non-Functional Requirements (30 total):
+This portion of the marks will be allocated by the TA based on the quality of your demonstration recording. Within the recording you should aim to answer all of the questions outlined in the assignment. You should ensure that you demonstrate your understanding of the algorithms and data used in the assignment even if software modules were used to perform the computations. You should also discuss the overall quality of your implementation, including critiques of its efficiency, scalability, etc., and elaborate on how it could be improved.
+
+Based on your recording, the TA will assign a grade for this portion using the rough breakdown below:
+Demonstrates excellent understanding of all components of the assignment (25-30)
+Demonstrates good understanding of all components of the assignment (20-25)
+Demonstrates a good understanding of most components but some areas are lacking (15-20)
+Demonstrates understanding of some components of the assignment but needs significant improvement (10-15)
+Demonstrates a poor understanding of the assignment as a whole (0-10)
+
