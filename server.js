@@ -32,6 +32,12 @@ async function initializeIndexes() {
 
 initializeIndexes().catch(console.error);
 
+app.get('/info', (req, res) => {
+  res.json({
+    name: 'MadiTook5898'
+  });
+});
+
 app.get('/', (req, res) => {
   res.render('home', { 
     title: 'Search Engine - COMP 4601A Assignment 1'
