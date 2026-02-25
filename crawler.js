@@ -188,7 +188,7 @@ async function main() {
     seedUrl = 'https://people.scs.carleton.ca/~avamckenney/fruitsA/N-0.html';
     maxPages = 100;
   } else if (datasetName === 'personal') {
-    seedUrl = 'https://myanimelist.net/anime/1';
+    seedUrl = 'https://myanimelist.net/anime/56009';
     maxPages = 1000;
   } else {
     console.error(`Unknown dataset: ${datasetName}`);

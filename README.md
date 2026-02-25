@@ -11,8 +11,11 @@ This project implements a complete search engine with web crawling, PageRank cal
 
 #### Web Crawler
 - Crawls fruitsA dataset (100 pages from https://people.scs.carleton.ca/~avamckenney/fruitsA/)
-- Crawls personal dataset (MyAnimeList anime pages, 500+ pages from https://myanimelist.net/anime/)
+- Crawls personal dataset (MyAnimeList anime pages, 1023 pages from https://myanimelist.net/anime/)
+  - Final count: 1023 valid pages achieved through multi-phase crawling approach
+  - Crawled across multiple sessions to work around rate limiting
 - Handles 404 errors gracefully for deleted anime pages
+- Implements URL normalization to prevent duplicates (removes hash fragments and trailing slashes)
 - Stores page content, links, and word frequencies in SQLite database
 
 #### PageRank Calculation
@@ -63,8 +66,26 @@ This project implements a complete search engine with web crawling, PageRank cal
 **Challenges encountered:**
 1. **404 Errors:** Some anime IDs have been deleted from MyAnimeList
    - **Solution:** Implemented error handling to catch 404s and mark pages as "Page Deleted"
-2. **Rate Limiting:** Too many requests could trigger rate limiting
-   - **Solution:** Added 100ms delay between requests
+   
+2. **Rate Limiting (405 Errors):** MyAnimeList implements aggressive rate limiting that blocks requests after crawling for extended periods
+   - **Problem:** After crawling several hundred pages, the site returns 405 (Method Not Allowed) errors, effectively blocking further crawling
+   - **Solution:** Implemented a multi-phase crawling approach:
+     1. Start crawling from a seed URL (e.g., `anime/1`)
+     2. Continue until 405 errors appear (typically after 300-400 pages)
+     3. Stop the crawler and wait 1-2 hours for rate limit to reset
+     4. Resume crawling by changing the seed URL to start from where we left off
+     5. Repeat this process until reaching the desired page count (500+)
+   - **Implementation:** Modified `crawler.js` to allow flexible seed URL configuration. To resume crawling:
+     ```bash
+     # Initial crawl (will hit rate limit after ~400 pages)
+     node crawler.js personal  # Starts from anime/1
+     
+     # After 1-2 hours, modify seedUrl in crawler.js to resume
+     # Change: seedUrl = 'https://myanimelist.net/anime/400'
+     node crawler.js personal  # Continues from anime/400
+     ```
+   - **Note:** The 100ms delay between requests helps but doesn't prevent rate limiting entirely. The multi-phase approach is necessary for crawling 500+ pages.
+   
 3. **Dynamic Content:** Some content loaded via JavaScript
    - **Solution:** Focused on server-rendered content in paragraph tags
 
@@ -84,6 +105,8 @@ npm install
 npm run crawl:fruitsA
 
 # Crawl personal dataset (MyAnimeList)
+# Note: Due to rate limiting, you may need to run this multiple times
+# with different seed URLs (see "Challenges encountered" section)
 npm run crawl:personal
 
 # Calculate PageRank for both datasets
@@ -157,7 +180,8 @@ curl -H "Accept: application/json" "http://localhost:3000/fruitsA?q=apple&limit=
 ## Known Issues & Future Improvements
 
 ### Current Limitations
-- Personal dataset crawl may take significant time (1000+ pages with delays)
+- Personal dataset crawl requires multi-phase approach due to MyAnimeList rate limiting (see Challenges section)
+- Crawling 500+ pages may take several mins spread across multiple sessions
 - Word frequency only counts paragraph text (not titles or other elements)
 - No caching of search results (rebuilds index on server restart)
 
