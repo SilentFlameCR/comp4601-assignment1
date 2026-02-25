@@ -36,7 +36,7 @@ app.get('/info', (req, res) => {
   res.json({
     name: 'MadiTook5898'
   });
-});
+})
 
 app.get('/', (req, res) => {
   res.render('home', { 
@@ -192,11 +192,16 @@ app.get('/personal', async (req, res) => {
   }
 });
 
-app.get('/page/:dataset/:pageId', (req, res) => {
+app.get('/page/:dataset', (req, res) => {
   try {
-    const { dataset, pageId } = req.params;
+    const { dataset } = req.params;
+    const { url } = req.query;
     
-    const page = db.prepare('SELECT * FROM pages WHERE dataset = ? AND id = ?').get(dataset, pageId);
+    if (!url) {
+      return res.status(400).send('URL query parameter is required');
+    }
+    
+    const page = db.prepare('SELECT * FROM pages WHERE dataset = ? AND url = ?').get(dataset, url);
     
     if (!page) {
       return res.status(404).send('Page not found');
@@ -239,7 +244,7 @@ app.listen(PORT, () => {
   console.log(`  GET / - Home page with search interface`);
   console.log(`  GET /fruitsA?q=<query>&boost=<true|false>&limit=<1-50>`);
   console.log(`  GET /personal?q=<query>&boost=<true|false>&limit=<1-50>`);
-  console.log(`  GET /page/:dataset/:pageId - View page details`);
+  console.log(`  GET /page/:dataset?url=<encoded_url> - View page details`);
 });
 
 process.on('SIGINT', () => {

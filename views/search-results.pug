@@ -40,4 +40,4 @@ block content
                 strong PageRank: 
                 | #{result.pr ? result.pr.toFixed(6) : '0.000000'}
               p
-                a(href=`/page/${dataset}/${result.url}`) View Page Details &rarr;
+                a(href=`/page/${dataset}?url=${encodeURIComponent(result.url)}`) View Page Details &rarr;
