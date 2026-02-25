@@ -1,0 +1,293 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f4f4f4;
+}
+
+header {
+  background-color: #2c3e50;
+  color: white;
+  padding: 1rem 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+header nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+header ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+header a:hover {
+  color: #3498db;
+}
+
+main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  min-height: calc(100vh - 200px);
+}
+
+.container {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+h2 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  border-bottom: 3px solid #3498db;
+  padding-bottom: 0.5rem;
+}
+
+h3 {
+  color: #34495e;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+h4 {
+  color: #34495e;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.search-section {
+  background: #ecf0f1;
+  padding: 1.5rem;
+  border-radius: 5px;
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+button {
+  background-color: #3498db;
+  color: white;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+.search-info {
+  background: #ecf0f1;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+}
+
+.search-info p {
+  margin-bottom: 0.5rem;
+}
+
+.new-search {
+  margin-bottom: 1.5rem;
+}
+
+.new-search a,
+.back-link a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.new-search a:hover,
+.back-link a:hover {
+  text-decoration: underline;
+}
+
+.no-results {
+  padding: 2rem;
+  text-align: center;
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+.results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.result-item {
+  border: 1px solid #bdc3c7;
+  border-radius: 5px;
+  padding: 1.5rem;
+  background: #fff;
+  transition: box-shadow 0.3s;
+}
+
+.result-item:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.result-header h3 {
+  color: #2c3e50;
+  margin: 0 0 1rem 0;
+}
+
+.result-details p {
+  margin-bottom: 0.5rem;
+}
+
+.result-details a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.result-details a:hover {
+  text-decoration: underline;
+}
+
+.page-info {
+  margin-top: 1rem;
+}
+
+.info-section {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #ecf0f1;
+  border-radius: 5px;
+}
+
+.link-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.link-list li {
+  padding: 0.5rem;
+  border-bottom: 1px solid #bdc3c7;
+  word-break: break-all;
+}
+
+.link-list li:last-child {
+  border-bottom: none;
+}
+
+.link-list a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.link-list a:hover {
+  text-decoration: underline;
+}
+
+.more-links {
+  font-style: italic;
+  color: #7f8c8d;
+}
+
+.word-freq-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.word-freq-table th,
+.word-freq-table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #bdc3c7;
+}
+
+.word-freq-table th {
+  background-color: #34495e;
+  color: white;
+  font-weight: 600;
+}
+
+.word-freq-table tr:hover {
+  background-color: #ecf0f1;
+}
+
+.back-link {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #bdc3c7;
+}
+
+footer {
+  background-color: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 3rem;
+}
+
+@media (max-width: 768px) {
+  main {
+    padding: 0 1rem;
+  }
+  
+  .container {
+    padding: 1rem;
+  }
+  
+  header nav {
+    padding: 0 1rem;
+  }
+}

@@ -1,0 +1,66 @@
+extends layout
+
+block content
+  .container
+    h2 Page Details
+    
+    .page-info
+      h3= page.title
+      
+      .info-section
+        h4 Basic Information
+        p
+          strong URL: 
+          a(href=page.url, target="_blank") #{page.url}
+        p
+          strong Title: 
+          | #{page.title}
+        p
+          strong PageRank: 
+          | #{page.pagerank ? page.pagerank.toFixed(6) : '0.000000'}
+        p
+          strong Dataset: 
+          | #{dataset}
+      
+      .info-section
+        h4 Incoming Links (#{incomingLinks.length})
+        if incomingLinks.length === 0
+          p No incoming links
+        else
+          ul.link-list
+            each link in incomingLinks.slice(0, 20)
+              li
+                a(href=link, target="_blank") #{link}
+            if incomingLinks.length > 20
+              li.more-links ... and #{incomingLinks.length - 20} more
+      
+      .info-section
+        h4 Outgoing Links (#{outgoingLinks.length})
+        if outgoingLinks.length === 0
+          p No outgoing links
+        else
+          ul.link-list
+            each link in outgoingLinks.slice(0, 20)
+              li
+                a(href=link, target="_blank") #{link}
+            if outgoingLinks.length > 20
+              li.more-links ... and #{outgoingLinks.length - 20} more
+      
+      .info-section
+        h4 Word Frequencies (Top 50)
+        if wordFrequencies.length === 0
+          p No word frequency data available
+        else
+          table.word-freq-table
+            thead
+              tr
+                th Word
+                th Frequency
+            tbody
+              each wf in wordFrequencies
+                tr
+                  td= wf.word
+                  td= wf.frequency
+    
+    .back-link
+      a(href="/") &larr; Back to Search

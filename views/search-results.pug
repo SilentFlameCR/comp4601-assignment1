@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  .container
+    h2 Search Results
+    
+    .search-info
+      p
+        strong Dataset: 
+        | #{dataset}
+      p
+        strong Query: 
+        | "#{query}"
+      p
+        strong Boost: 
+        | #{boost ? 'Yes' : 'No'}
+      p
+        strong Results: 
+        | #{results.length} / #{limit}
+    
+    .new-search
+      a(href="/") &larr; New Search
+    
+    if results.length === 0
+      p.no-results No results found for your query.
+    else
+      .results-list
+        each result, index in results
+          .result-item
+            .result-header
+              h3 #{index + 1}. #{result.title}
+            .result-details
+              p
+                strong URL: 
+                a(href=result.url, target="_blank") #{result.url}
+              p
+                strong Search Score: 
+                | #{result.score.toFixed(6)}
+              p
+                strong PageRank: 
+                | #{result.pr ? result.pr.toFixed(6) : '0.000000'}
+              p
+                a(href=`/page/${dataset}/${result.url}`) View Page Details &rarr;

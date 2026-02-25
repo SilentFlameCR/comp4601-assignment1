@@ -1,0 +1,42 @@
+extends layout
+
+block content
+  .container
+    h2 Search Engine
+    p Search across two datasets: fruitsA and MyAnimeList
+    
+    .search-section
+      h3 Search fruitsA Dataset
+      form(action="/fruitsA", method="GET")
+        .form-group
+          label(for="q-fruits") Search Query:
+          input#q-fruits(type="text", name="q", placeholder="Enter search terms...", required)
+        
+        .form-group
+          label(for="boost-fruits")
+            input#boost-fruits(type="checkbox", name="boost", value="true")
+            |  Boost results with PageRank
+        
+        .form-group
+          label(for="limit-fruits") Number of Results (1-50):
+          input#limit-fruits(type="number", name="limit", min="1", max="50", value="10")
+        
+        button(type="submit") Search fruitsA
+    
+    .search-section
+      h3 Search Personal Dataset (MyAnimeList)
+      form(action="/personal", method="GET")
+        .form-group
+          label(for="q-personal") Search Query:
+          input#q-personal(type="text", name="q", placeholder="Enter search terms...", required)
+        
+        .form-group
+          label(for="boost-personal")
+            input#boost-personal(type="checkbox", name="boost", value="true")
+            |  Boost results with PageRank
+        
+        .form-group
+          label(for="limit-personal") Number of Results (1-50):
+          input#limit-personal(type="number", name="limit", min="1", max="50", value="10")
+        
+        button(type="submit") Search Personal
