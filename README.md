@@ -6,15 +6,17 @@
 ## Assignment Summary
 
 This project implements a complete search engine with web crawling, PageRank calculation, TF-IDF indexing, and a RESTful API with browser-based interface.
+For the personal dataset we decided to crawl MyAnimeList anime pages, as it was a rich text content in descriptions and reviews, well-structured HTML with clear paragraph tags, interesting link structure between related anime, and challenging due to some deleted pages (404 errors) and rate limiting.
 
 ### Completed Features
 
 #### Web Crawler
 - Crawls fruitsA dataset (100 pages from https://people.scs.carleton.ca/~avamckenney/fruitsA/)
 - Crawls personal dataset (MyAnimeList anime pages, 1023 pages from https://myanimelist.net/anime/)
-  - Final count: 1023 valid pages achieved through multi-phase crawling approach
-  - Crawled across multiple sessions to work around rate limiting
-- Handles 404 errors gracefully for deleted anime pages
+  - Crawling strategy: Started from anime IDs 1-1000, following links to related pages (character pages, reviews, etc.) within the MyAnimeList domain
+  - Final count: 1023 total indexed pages (includes main anime pages and related subpages)
+  - Multi-phase crawling approach to work around rate limiting
+  - Some anime IDs return 404 (deleted entries), which are handled gracefully
 - Implements URL normalization to prevent duplicates (removes hash fragments and trailing slashes)
 - Stores page content, links, and word frequencies in SQLite database
 

@@ -4,16 +4,19 @@ After=network.target
 
 [Service]
 Type=simple
-User=ubuntu
+User=student
 WorkingDirectory=/home/student/dev/assignment1
-ExecStart=/usr/bin/node server.js
-Restart=always
-RestartSec=10
-StandardOutput=syslog
-StandardError=syslog
-SyslogIdentifier=search-engine
 Environment=NODE_ENV=production
 Environment=PORT=3000
+
+# Use npm start (matches your working service pattern)
+ExecStart=/usr/bin/npm start
+
+Restart=on-failure
+RestartSec=2
+
+StandardOutput=journal
+StandardError=journal
 
 [Install]
 WantedBy=multi-user.target
