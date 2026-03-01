@@ -3,6 +3,18 @@
 **Student Names:** Rahul Rodrigues and Emily Amos
 **Student IDs:** 101145082 and 101311817
 
+**Video Demo URL:** [Youtube unlisted video link](https://youtu.be/VFzGhDfz6d8)
+
+## Deployment URL (Hosted on openstack)
+
+**OpenStack URL:** http://134.117.133.107:3000
+
+Example query:
+```
+http://134.117.133.107:3000/fruitsA?q=banana&limit=10&boost=false
+http://134.117.133.107:3000/personal?q=alchemy&limit=10&boost=true
+```
+
 ## Assignment Summary
 
 This project implements a complete search engine with web crawling, PageRank calculation, TF-IDF indexing, and a RESTful API with browser-based interface.
@@ -125,7 +137,7 @@ npm start
 node server.js
 ```
 
-Server will be available at: http://localhost:3000
+Server will be available at: http://localhost:3000 (on your local machine)
 
 ### API Examples
 
@@ -172,7 +184,7 @@ curl -H "Accept: application/json" "http://localhost:3000/fruitsA?q=apple&limit=
 
 ## Video Demonstration
 
-**Link:** [todo]
+**Video Demo URL:** [Youtube unlisted video link](https://youtu.be/VFzGhDfz6d8)
 
 ## Deployment URLs
 
