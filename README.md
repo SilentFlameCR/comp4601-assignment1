@@ -3,7 +3,7 @@
 **Student Names:** Rahul Rodrigues and Emily Amos
 **Student IDs:** 101145082 and 101311817
 
-**Video Demo URL:** [Youtube unlisted video link](https://youtu.be/VFzGhDfz6d8)
+**Video Demo URL:** [Youtube unlisted video link]()
 
 ## Deployment URL (Hosted on openstack)
 
@@ -23,10 +23,10 @@ For the personal dataset we decided to crawl MyAnimeList anime pages, as it was 
 ### Completed Features
 
 #### Web Crawler
-- Crawls fruitsA dataset (100 pages from https://people.scs.carleton.ca/~avamckenney/fruitsA/)
-- Crawls personal dataset (MyAnimeList anime pages, 1023 pages from https://myanimelist.net/anime/)
-  - Crawling strategy: Started from anime IDs 1-1000, following links to related pages (character pages, reviews, etc.) within the MyAnimeList domain
-  - Final count: 1023 total indexed pages (includes main anime pages and related subpages)
+- Crawls fruitsA dataset (100 pages total: 50 fruitsA + 50 fruitsB)
+  - Starts at https://people.scs.carleton.ca/~avamckenney/fruitsA/N-0.html
+  - Discovers all pages by following links (includes both fruitsA and fruitsB directories)
+- Crawls personal dataset (MyAnimeList anime pages, 1267 pages from https://myanimelist.net/anime/)
   - Multi-phase crawling approach to work around rate limiting
   - Some anime IDs return 404 (deleted entries), which are handled gracefully
 - Implements URL normalization to prevent duplicates (removes hash fragments and trailing slashes)
