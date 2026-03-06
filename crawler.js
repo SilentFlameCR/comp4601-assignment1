@@ -18,14 +18,7 @@ class WebCrawler {
     console.log(`Seed URL: ${this.seedUrl}`);
     console.log(`Max pages: ${this.maxPages}\n`);
 
-    if (this.dataset === 'fruitsA') {
-      for (let i = 0; i < 100; i++) {
-        const url = `https://people.scs.carleton.ca/~avamckenney/fruitsA/N-${i}.html`;
-        this.queue.push(url);
-      }
-    } else {
-      this.queue.push(this.seedUrl);
-    }
+    this.queue.push(this.seedUrl);
 
     while (this.queue.length > 0 && this.pageCount < this.maxPages) {
       const url = this.queue.shift();
@@ -120,7 +113,8 @@ class WebCrawler {
 
   shouldCrawl(url) {
     if (this.dataset === 'fruitsA') {
-      return url.includes('people.scs.carleton.ca/~avamckenney/fruitsA/');
+      // Allow both fruitsA and fruitsB pages (50 + 50 = 100 total)
+      return url.includes('people.scs.carleton.ca/~avamckenney/fruits');
     } else if (this.dataset === 'personal') {
       return url.includes('myanimelist.net/anime/') && /\/anime\/\d+/.test(url);
     }
