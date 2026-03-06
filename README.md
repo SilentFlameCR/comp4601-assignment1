@@ -3,7 +3,7 @@
 **Student Names:** Rahul Rodrigues and Emily Amos
 **Student IDs:** 101145082 and 101311817
 
-**Video Demo URL:** [Youtube unlisted video link]()
+**Video Demo URL:** [Youtube unlisted video link](https://youtu.be/ZOokIyWtnps)
 
 ## Deployment URL (Hosted on openstack)
 
@@ -184,7 +184,7 @@ curl -H "Accept: application/json" "http://localhost:3000/fruitsA?q=apple&limit=
 
 ## Video Demonstration
 
-**Video Demo URL:** [Youtube unlisted video link](https://youtu.be/VFzGhDfz6d8)
+**Video Demo URL:** [Youtube unlisted video link](https://youtu.be/ZOokIyWtnps)
 
 ## Deployment URLs
 
